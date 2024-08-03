@@ -345,6 +345,24 @@ func (c *Config) GetUserEntry(username string) (*Entry, error) {
 			username, c.file.Name(), errRangeTooLow, validRangeCount,
 		)
 	}
+
+	// check subids via shadow-utils if supported
+	var subidEntries []*Entry
+	if strings.Contains(c.file.Name(), "gid") {
+		subidEntries, err = readSubgid(u)
+	} else {
+		subidEntries, err = readSubuid(u)
+	}
+	if err != nil {
+		return nil, fmt.Errorf("failed to look up mapping entries for user %s: %w", username, err)
+	}
+	for _, entry := range subidEntries {
+		if entry.Count == validRangeCount {
+			return entry, nil
+		}
+		entryCount++
+	}
+
 	return nil, fmt.Errorf("%w in %s for %s", errNoMappingEntry, c.file.Name(), username)
 }
 
