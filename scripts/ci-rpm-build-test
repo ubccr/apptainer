@@ -7,8 +7,9 @@
 # this script runs as root under docker --privileged
 
 # install dependencies
-yum install -y rpm-build make yum-utils gcc binutils util-linux-ng which git
-yum install -y libseccomp-devel cryptsetup
+dnf install -y rpm-build make yum-utils gcc binutils util-linux-ng which git
+dnf install -y libseccomp-devel cryptsetup
+dnf --enablerepo=devel install -y shadow-utils-subid-devel
 if [ $OS_TYPE != fedora ]; then
   yum install -y epel-release
 fi
