@@ -7,6 +7,7 @@ For older changes see the [archived Singularity change log](https://github.com/a
 
 ## v1.3.5 - \[2024-10-30\]
 
+<<<<<<< HEAD
 - Fix a regression introduced in 1.3.4 that overwrote existing standard
   `/.singularity.d` files such as `runscript` in container images even
   if they had been modified.
@@ -15,6 +16,21 @@ For older changes see the [archived Singularity change log](https://github.com/a
 - Support parsing nested variables defined inside `%arguments` section of
   definition files.
 - Ignore invalid environment variables when pulling oci/docker containers.
+=======
+- Label process for starter binary of interactive containers with image filename,
+  for example: `Apptainer runtime parent: example.sif`.
+- Fix the `mconfig -s` option to build the apptainer and starter
+  binaries statically as documented.
+- The `registry login` and `registry logout` commands now support a `--authfile
+  <path>` flag, which causes the OCI credentials to be written to / removed from
+  a custom file located at `<path>` instead of the default location
+  (`$HOME/.apptainer/docker-config.json`). The commands `pull`, `push`, `run`,
+  `exec`, `shell` and `instance start` can now also be passed a `--authfile
+  <path>` option, to read OCI registry credentials from this custom file.
+- Add support for libsubid
+
+## Changes for v1.3.x
+>>>>>>> 33d596d7e (Add initial support for libsuid.)
 
 ## v1.3.4 - \[2024-09-04\]
 
