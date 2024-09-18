@@ -14,6 +14,17 @@ For older changes see the [archived Singularity change log](https://github.com/a
   overlayfs refused to try to use it and Apptainer proceeded to use
   fuse-overlayfs anyway, but with GPFS the kernel overlayfs allowed
   mounting but returned stale file handle errors.
+- Label process for starter binary of interactive containers with image filename,
+  for example: `Apptainer runtime parent: example.sif`.
+- Fix the `mconfig -s` option to build the apptainer and starter
+  binaries statically as documented.
+- The `registry login` and `registry logout` commands now support a `--authfile
+  <path>` flag, which causes the OCI credentials to be written to / removed from
+  a custom file located at `<path>` instead of the default location
+  (`$HOME/.apptainer/docker-config.json`). The commands `pull`, `push`, `run`,
+  `exec`, `shell` and `instance start` can now also be passed a `--authfile
+  <path>` option, to read OCI registry credentials from this custom file.
+- Add support for libsubid
 
 ## v1.3.5 - \[2024-10-30\]
 
